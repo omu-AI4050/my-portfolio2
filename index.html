@@ -1,0 +1,529 @@
+import React, { useState } from 'react';
+import { 
+  Briefcase, 
+  FileText, 
+  TrendingUp, 
+  Users, 
+  CheckCircle, 
+  BookOpen, 
+  Monitor, 
+  ClipboardList, 
+  ChevronDown, 
+  ChevronUp, 
+  Mail,
+  ShieldCheck,
+  BrainCircuit,
+  Zap,
+  Bot,
+  Server, 
+  Database 
+} from 'lucide-react';
+
+const Portfolio = () => {
+  const [activeAccordion, setActiveAccordion] = useState(null);
+
+  const toggleAccordion = (index) => {
+    setActiveAccordion(activeAccordion === index ? null : index);
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    alert('テンプレートをコピーしました！');
+  };
+
+  const services = [
+    {
+      icon: <Server className="w-8 h-8 text-amber-600" />,
+      title: "物流システム構築・WMS刷新",
+      desc: "22年の現場知見に基づき、ベンダー選定から要件定義、マスタ設計まで、「現場が止まらない」システム導入を指揮します。"
+    },
+    {
+      icon: <Database className="w-8 h-8 text-amber-600" />,
+      title: "KPI設計・データ可視化",
+      desc: "埋もれた社内データを構造化。BIツールやスプレッドシートを駆使し、経営判断に直結するダッシュボードを構築します。"
+    },
+    {
+      icon: <Monitor className="w-8 h-8 text-amber-600" />,
+      title: "ITベンチャー流 DX推進",
+      desc: "SaaS導入（Notion, Slack, SalesForce等）やワークフロー整備により、アナログな組織をデジタル体質へ変革します。"
+    },
+    {
+      icon: <BookOpen className="w-8 h-8 text-amber-600" />,
+      title: "業務標準化・マニュアル整備",
+      desc: "属人化した業務を洗い出し、誰でも同じ品質で遂行できるプロセスを設計。システム移行前の業務整理にも最適です。"
+    },
+    {
+      icon: <Bot className="w-8 h-8 text-amber-600" />,
+      title: "AI導入・業務自動化支援",
+      desc: "ChatGPTやGAS(スクリプト)を活用し、日報集計や転記作業を自動化。現場の「コピペ作業」をゼロにします。"
+    },
+    {
+      icon: <Users className="w-8 h-8 text-amber-600" />,
+      title: "PMO・プロジェクト管理",
+      desc: "エンジニアとビジネスサイドの間に立ち、通訳として機能。タスク管理や進捗管理を行い、プロジェクトを推進します。"
+    }
+  ];
+
+  const works = [
+    {
+      title: "基幹システムリプレイス支援",
+      tags: ["物流", "要件定義", "PMO"],
+      problem: "旧システムの老朽化に伴う刷新プロジェクト",
+      solution: "現場業務フローの全棚卸しと新WMS要件定義",
+      result: "大きなトラブルなく移行完了、処理能力120%向上",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      title: "全社ナレッジベース構築",
+      tags: ["ITベンチャー", "Notion", "DX"],
+      problem: "情報が属人化し、新人の立ち上がりが遅い",
+      solution: "Notionによる社内Wiki構築と運用ルール策定",
+      result: "検索時間が1日平均30分短縮、教育コスト削減",
+      image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      title: "在庫管理の自動化ツール開発",
+      tags: ["GAS", "自動化", "システム"],
+      problem: "毎朝の手入力による在庫集計が負担",
+      solution: "スプレッドシート×GASによる自動連携ツール開発",
+      result: "作業時間ゼロ化＆入力ミス撲滅を達成",
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      title: "物流センター立ち上げPM",
+      tags: ["物流", "プロジェクト管理"],
+      problem: "新拠点開設におけるスケジュール遅延の懸念",
+      solution: "ガントチャート作成と業者間の調整リード",
+      result: "予定通りの稼働開始を実現、予算内完遂",
+      image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      title: "CS部門の業務フロー改善",
+      tags: ["DX", "業務改善"],
+      problem: "問い合わせ対応の品質にバラつきがある",
+      solution: "対応フローの標準化とFAQシステムの導入",
+      result: "一次回答率が向上し、顧客満足度が改善",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      title: "新人向けOJT 7日プラン",
+      tags: ["教育", "マニュアル", "AI活用"],
+      problem: "マニュアル作成に時間が割けない",
+      solution: "AIによる動画文字起こしで手順書を高速作成",
+      result: "準備工数1/3で新人教育体制を確立",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      title: "SFA(営業支援)定着化支援",
+      tags: ["ITベンチャー", "Salesforce"],
+      problem: "ツール導入後、現場が入力してくれない",
+      solution: "入力項目の最小化とメリットの再教育",
+      result: "入力率が90%を超え、予実管理が機能開始",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80"
+    },
+    {
+      title: "物流コスト削減提案書",
+      tags: ["提案書", "コンサル"],
+      problem: "配送費の高騰が利益を圧迫",
+      solution: "データ分析による梱包サイズ最適化の提案",
+      result: "年間数百万単位のコスト削減プランが承認",
+      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80"
+    }
+  ];
+
+  const faqs = [
+    { q: "どのような業界の実績がありますか？", a: "物流（医薬品卸など）で22年、ITベンチャーでのマネジメント経験があります。" },
+    { q: "システム開発自体をお願いできますか？", a: "GAS等の軽量ツールは開発可能です。大規模システムは要件定義やベンダーコントロール（PMO）として支援します。" },
+    { q: "AI導入や自動化だけの依頼も可能ですか？", a: "可能です。「このExcel集計を自動化したい」といったスポット依頼も歓迎です。" },
+    { q: "報酬の目安はどれくらいですか？", a: "簡易ドキュメント1万円〜、プロジェクト支援・要件定義は5万円〜が目安です。" },
+    { q: "フルリモートでの対応は可能ですか？", a: "はい、基本はリモートで対応します。Slack, Zoom, Notionなど各種ツールに対応可能です。" },
+    { q: "守秘義務契約（NDA）は可能ですか？", a: "はい。クラウドソーシング上の契約、書面締結ともに対応いたします。" },
+    { q: "WMSの選定から相談できますか？", a: "中立的な立場で、貴社のオペレーションに最適なシステムの選定・要件整理を支援します。" },
+    { q: "急ぎの案件ですが対応可能ですか？", a: "AI活用により、通常より早い納品が可能です。まずはご相談ください。" },
+    { q: "社内のDX担当として入ってもらえますか？", a: "準委任契約などでの継続的な参画も可能です。ご相談ください。" },
+    { q: "データの受け渡し方法は？", a: "貴社のセキュリティポリシーに準拠します。Google Workspace, AWS等も対応可能です。" },
+    { q: "AI利用について不安があります。", a: "AIはあくまで補助です。ファクトチェックと責任ある納品は私が徹底します。" },
+    { q: "インボイス対応していますか？", a: "はい、適格請求書発行事業者として登録済みです。" },
+  ];
+
+  const templateText = `■ご依頼の概要
+（例：社内システムの要件定義を手伝ってほしい、日報を自動化したい）
+
+■現状の課題
+（例：ベンダーとの会話が噛み合わない、ツールを導入したが定着していない）
+
+■希望する成果物
+（例：要件定義書ドラフト、GASによる自動集計ツール）
+
+■納期・スケジュールの目安
+（例：来月の開発着手に向けて、今月中に要件を固めたい）
+
+■その他・ご予算感など
+（例：週1回のMTG参加含め、月額〇〇円程度で相談したい）`;
+
+  return (
+    <div className="min-h-screen bg-slate-100 text-slate-700 font-sans">
+      {/* Header */}
+      <header className="fixed top-0 w-full bg-slate-100/90 backdrop-blur-md shadow-sm z-50 border-b border-slate-200">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <h1 className="font-bold text-xl text-slate-800 flex items-center gap-2">
+            <Server className="w-6 h-6 text-slate-600" />
+            <span>System<span className="text-amber-600">Ops</span> Partner</span>
+          </h1>
+          <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+            <a href="#strengths" className="hover:text-amber-600 transition">強み</a>
+            <a href="#services" className="hover:text-amber-600 transition">提供サービス</a>
+            <a href="#works" className="hover:text-amber-600 transition">実績・実例</a>
+            <a href="#contact" className="bg-amber-600 text-white px-5 py-2 rounded-full hover:bg-amber-700 transition shadow-sm font-bold">お問い合わせ</a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 bg-slate-100 overflow-hidden">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2 text-center md:text-left z-10">
+              <div className="flex flex-wrap gap-2 justify-center md:justify-start mb-4">
+                <span className="bg-white text-slate-700 text-xs px-3 py-1 rounded-full font-semibold tracking-wider border border-slate-300 shadow-sm">
+                  物流システム導入 / DX推進
+                </span>
+                <span className="bg-amber-50 text-amber-800 text-xs px-3 py-1 rounded-full font-semibold tracking-wider flex items-center border border-amber-200">
+                  <Zap className="w-3 h-3 mr-1 text-amber-600" />
+                  ITベンチャー流のスピード感
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 leading-tight">
+                「現場」を知るシステム屋が、<br />
+                <span className="text-amber-600">仕組み</span>と<span className="text-amber-600">データ</span>で<br />
+                組織をアップデートする。
+              </h2>
+              <p className="text-lg text-slate-600 mb-10 leading-relaxed">
+                物流システム構築22年の経験と、ITベンチャーでのDXマネジメント。<br />
+                泥臭い現場調整から、最新ツールの導入・定着まで。<br className="hidden md:inline"/>
+                エンジニアと現場の「通訳」として、プロジェクトを成功に導きます。
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                <a href="#contact" className="bg-gradient-to-r from-amber-600 to-amber-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:from-amber-700 hover:to-amber-800 transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                  <Mail className="w-5 h-5" />
+                  まずは相談してみる
+                </a>
+                <a href="#works" className="bg-white text-slate-700 border border-slate-300 px-8 py-4 rounded-lg font-bold text-lg hover:bg-slate-50 hover:border-amber-400 transition flex items-center justify-center gap-2 shadow-sm">
+                  実績を見る
+                </a>
+              </div>
+            </div>
+            
+            <div className="md:w-1/2 relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white grayscale-[20%] hover:grayscale-0 transition duration-700">
+                <img 
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" 
+                  alt="データ分析とシステム運用のイメージ" 
+                  className="w-full h-auto object-cover transform hover:scale-105 transition duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent pointer-events-none"></div>
+                <div className="absolute bottom-4 left-4 text-white font-medium drop-shadow-md">
+                  <div className="flex items-center gap-2 text-sm mb-1">
+                    <BrainCircuit className="w-4 h-4 text-amber-300" />
+                    <span>System Architecture & DX</span>
+                  </div>
+                  物流システム × ITベンチャーDX
+                </div>
+              </div>
+              {/* Decorative elements */}
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-amber-100 rounded-full -z-10 blur-xl"></div>
+              <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-slate-300 rounded-full -z-10 blur-xl"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Strengths Section */}
+      <section id="strengths" className="py-20 bg-slate-50 border-t border-slate-200">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-12 mb-16">
+            <div className="md:w-1/3 text-center">
+              <div className="inline-block relative">
+                <img 
+                  src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80" 
+                  alt="プロフィール写真" 
+                  className="w-48 h-48 rounded-full border-4 border-white shadow-xl object-cover mx-auto grayscale-[30%]"
+                />
+                <div className="absolute bottom-2 right-2 bg-slate-800 text-amber-500 p-2 rounded-full shadow-md border-2 border-white">
+                  <CheckCircle className="w-5 h-5" />
+                </div>
+              </div>
+              <h3 className="text-xl font-bold text-slate-800 mt-6">システムと現場の架け橋</h3>
+              <p className="text-sm text-slate-500 mt-2">
+                物流システムの構築経験と、IT企業のスピード感。<br/>
+                「技術」と「運用」の両面から最適解を出します。
+              </p>
+              <div className="mt-4 flex justify-center gap-2">
+                <span className="text-xs bg-white px-3 py-1 rounded-full shadow-sm text-slate-600 border border-slate-300">ITパスポート</span>
+                <span className="text-xs bg-white px-3 py-1 rounded-full shadow-sm text-slate-600 border border-slate-300">WMS構築経験</span>
+              </div>
+            </div>
+
+            <div className="md:w-2/3">
+              <div className="text-left mb-8">
+                <h3 className="text-2xl font-bold text-slate-800 mb-2">選ばれる3つの理由</h3>
+                <div className="w-16 h-1 bg-amber-500"></div>
+              </div>
+              
+              <div className="space-y-6">
+                <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex items-start gap-4 border border-slate-100 hover:border-amber-400">
+                  <div className="bg-slate-100 p-3 rounded-lg shrink-0">
+                    <Server className="w-6 h-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-slate-800 mb-2">1. 物流システム構築 22年の知見</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      単なるオペレーションだけでなく、WMS（倉庫管理システム）の要件定義から導入、マスタ設計まで経験。ベンダー任せにせず、現場が本当に使えるシステムを構築します。
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex items-start gap-4 border border-slate-100 hover:border-amber-400">
+                  <div className="bg-slate-100 p-3 rounded-lg shrink-0">
+                    <Monitor className="w-6 h-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-slate-800 mb-2">2. ITベンチャーでのDX・管理能力</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      IT企業でのマネジメント経験を活かし、SaaSツールの導入やモダンなプロジェクト管理（Agile/Scrum的アプローチ）を推進。スピード感を持って組織を変革します。
+                    </p>
+                  </div>
+                </div>
+                
+                <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition flex items-start gap-4 border border-slate-100 hover:border-amber-400">
+                  <div className="bg-slate-100 p-3 rounded-lg shrink-0">
+                    <Zap className="w-6 h-6 text-amber-600" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-slate-800 mb-2">3. AI × 自動化の実装力</h4>
+                    <p className="text-slate-600 text-sm leading-relaxed">
+                      生成AIやGAS（Google Apps Script）を実務で活用。データ分析、単純作業の自動化、ドキュメント生成を自ら手を動かして実装し、即座に効果を出します。
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section id="services" className="py-20 bg-slate-100 border-t border-slate-200">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h3 className="text-2xl font-bold text-slate-800 mb-2">提供できるサービス</h3>
+            <p className="text-slate-500 text-sm">システム視点 × 現場視点の両輪でサポートします</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {services.map((service, index) => (
+              <div key={index} className="border border-slate-200 p-6 rounded-lg hover:border-amber-400 transition bg-white shadow-sm hover:shadow-lg group">
+                <div className="mb-4 group-hover:scale-110 transition duration-300 origin-left bg-slate-50 w-14 h-14 flex items-center justify-center rounded-lg">{service.icon}</div>
+                <h4 className="text-lg font-bold text-slate-800 mb-3">{service.title}</h4>
+                <p className="text-sm text-slate-600 leading-relaxed">{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Works Section */}
+      <section id="works" className="py-20 bg-slate-900 text-slate-50 border-t border-slate-800">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h3 className="text-2xl font-bold text-white mb-2">プロジェクト実績・実例</h3>
+            <p className="text-slate-400 text-sm">システム導入から業務改善まで、幅広い課題解決の事例です</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {works.map((work, index) => (
+              <div key={index} className="bg-slate-800 rounded-lg border border-slate-700 hover:border-amber-500/50 transition group overflow-hidden flex flex-col shadow-lg">
+                <div className="h-40 overflow-hidden relative">
+                  <img 
+                    src={work.image} 
+                    alt={work.title} 
+                    className="w-full h-full object-cover group-hover:scale-110 transition duration-500 opacity-70 group-hover:opacity-100 grayscale-[20%] group-hover:grayscale-0"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-2 left-2 flex flex-wrap gap-1">
+                    {work.tags.map((tag, i) => (
+                      <span key={i} className="text-[10px] bg-black/60 backdrop-blur-sm text-amber-200 px-2 py-0.5 rounded border border-amber-500/30">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div className="p-5 flex-1 flex flex-col">
+                  <h4 className="text-base font-bold text-white mb-4 group-hover:text-amber-300 transition line-clamp-2 min-h-[3rem]">
+                    {work.title}
+                  </h4>
+                  
+                  <div className="space-y-3 text-sm flex-1">
+                    <div>
+                      <span className="text-slate-500 text-xs uppercase block mb-0.5">課題</span>
+                      <p className="text-slate-300 text-xs leading-relaxed">{work.problem}</p>
+                    </div>
+                    <div>
+                      <span className="text-slate-500 text-xs uppercase block mb-0.5">対応</span>
+                      <p className="text-slate-300 text-xs leading-relaxed">{work.solution}</p>
+                    </div>
+                    <div className="mt-2 pt-2 border-t border-slate-700">
+                      <span className="text-slate-400 text-xs uppercase block mb-0.5 font-bold">成果</span>
+                      <p className="text-amber-400 text-xs font-semibold">{work.result}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process & AI Policy */}
+      <section className="py-20 bg-slate-50 border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-4xl">
+          {/* Process */}
+          <div className="mb-20">
+            <h3 className="text-2xl font-bold text-slate-800 mb-12 text-center">納品までの流れ</h3>
+            <div className="flex flex-col md:flex-row justify-between relative gap-8">
+              <div className="absolute top-1/2 left-0 w-full h-1 bg-slate-200 -z-10 hidden md:block"></div>
+              {[
+                { step: "01", title: "ご相談", desc: "まずは現状のシステム/業務課題をお聞かせください" },
+                { step: "02", title: "分析・要件定義", desc: "課題の真因を特定し、あるべき姿を設計します" },
+                { step: "03", title: "ご提案・着手", desc: "具体的な解決策（ツール導入/開発/標準化）を提示" },
+                { step: "04", title: "実行・納品", desc: "実装から運用定着まで伴走支援します" }
+              ].map((item, i) => (
+                <div key={i} className="bg-white p-6 rounded-xl shadow-md border border-slate-200 md:w-1/4 text-center hover:shadow-lg transition relative z-10">
+                  <div className="w-12 h-12 bg-gradient-to-br from-slate-700 to-slate-900 text-amber-400 rounded-full flex items-center justify-center font-bold mx-auto mb-4 text-lg shadow-lg">
+                    {item.step}
+                  </div>
+                  <h4 className="font-bold text-slate-800 mb-2">{item.title}</h4>
+                  <p className="text-xs text-slate-500 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* AI Policy */}
+          <div className="bg-white border border-slate-200 rounded-xl p-8 flex flex-col md:flex-row gap-6 items-start shadow-sm">
+            <div className="bg-slate-100 p-3 rounded-full shadow-inner text-amber-600 shrink-0">
+              <BrainCircuit className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-800 mb-3 text-lg">AI活用とセキュリティについて</h4>
+              <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                作業効率化のためにAIや自動化ツールを活用しますが、
+                <span className="font-bold text-slate-900">「思考の整理や単純作業を高速化し、本質的な課題解決に時間を割くため」</span>です。
+                これにより、ハイクオリティな成果を短納期で提供します。
+              </p>
+              <div className="flex items-center text-sm font-semibold text-slate-800 bg-slate-50 p-3 rounded-lg border border-slate-200">
+                <ShieldCheck className="w-4 h-4 mr-2 text-amber-600" />
+                機密情報の取り扱い、NDA締結、セキュリティ対策はIT企業の基準で徹底します。
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 bg-slate-100 border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold text-slate-800 mb-2">よくあるご質問</h3>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden border border-slate-200">
+                <button
+                  className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none hover:bg-slate-50 transition"
+                  onClick={() => toggleAccordion(index)}
+                >
+                  <span className="font-bold text-slate-800 text-sm md:text-base flex items-center gap-3">
+                    <span className="bg-slate-200 text-slate-700 w-6 h-6 rounded-full flex items-center justify-center text-xs shrink-0">Q</span>
+                    {faq.q}
+                  </span>
+                  {activeAccordion === index ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+                </button>
+                {activeAccordion === index && (
+                  <div className="px-6 pb-4 bg-white border-t border-slate-100 pl-[3.25rem]">
+                    <p className="text-sm text-slate-600 mt-2 leading-relaxed">A. {faq.a}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-slate-50 border-t border-slate-200">
+        <div className="container mx-auto px-4 max-w-4xl">
+          <div className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl p-8 md:p-12 text-white shadow-2xl overflow-hidden relative">
+            <div className="relative z-10 grid md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-3xl font-bold mb-4">まずはお気軽にご相談ください</h3>
+                <p className="text-slate-300 mb-8 leading-relaxed">
+                  「何からシステム化すればいいかわからない」という段階でも構いません。複雑な業務フローを整理するところから始めましょう。
+                </p>
+                <div className="space-y-4">
+                  <a href="#" className="block w-full bg-white text-slate-800 text-center font-bold py-4 rounded-lg shadow hover:bg-slate-100 transition flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                    クラウドワークスで相談する
+                  </a>
+                  <a href="#" className="block w-full bg-slate-700/50 border border-white/20 text-white text-center font-bold py-4 rounded-lg hover:bg-slate-700/70 transition flex items-center justify-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+                    ランサーズで相談する
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-white/5 p-6 rounded-xl border border-white/10 backdrop-blur-sm shadow-inner">
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="font-bold text-sm flex items-center text-amber-400">
+                    <ClipboardList className="w-4 h-4 mr-2" />
+                    相談テンプレート
+                  </h4>
+                  <button 
+                    onClick={() => copyToClipboard(templateText)}
+                    className="text-xs bg-amber-600 text-white hover:bg-amber-500 px-3 py-1.5 rounded font-bold transition shadow-sm"
+                  >
+                    コピーする
+                  </button>
+                </div>
+                <textarea 
+                  className="w-full h-48 bg-black/40 text-slate-200 text-xs p-3 rounded border border-white/10 focus:outline-none focus:border-amber-500/50 resize-none font-mono leading-relaxed"
+                  readOnly
+                  value={templateText}
+                />
+                <p className="text-xs text-slate-400 mt-2 text-center opacity-80">
+                  ↑コピーしてメッセージに貼り付けてください
+                </p>
+              </div>
+            </div>
+            
+            {/* Decoration */}
+            <div className="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-amber-600 rounded-full opacity-10 blur-3xl"></div>
+            <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-64 h-64 bg-slate-600 rounded-full opacity-30 blur-3xl"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-400 py-12 text-center text-sm border-t border-slate-800">
+        <div className="container mx-auto px-4">
+          <p className="mb-4 text-slate-300 font-medium">System & DX Partner / Logistics Specialist</p>
+          <p>&copy; 2024 SystemOps Partner. All Rights Reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+};
+
+export default Portfolio;
